@@ -7,11 +7,20 @@ import "components/DayListItem.scss";
 import Appointment from "components/Appointment";
 import "components/Appointment/styles.scss"
 
+import useApplicationData from "hooks/useApplicationData";
+
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 export default function Application(props) {
 
-  const [state, setState] = useState({
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
+
+  /* const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
@@ -51,6 +60,21 @@ export default function Application(props) {
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
   };
 
+  const setDay = day => setState({ ...state, day });
+  //const setDay = day => setState(prev => ({ ...prev, day }));
+
+  useEffect(() => {
+    Promise.all([
+      axios.get(`http://localhost:8001/api/days`),
+      axios.get(`http://localhost:8001/api/appointments`),
+      axios.get(`http://localhost:8001/api/interviewers`)
+    ])
+    .then(all => {
+      setState(prev => ({ ...prev, days: [...all[0].data], appointments: {...all[1].data}, interviewers: {...all[2].data}}));
+    })
+  }, []); */
+
+
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
     const schedule = dailyAppointments.map(appt => {
@@ -68,20 +92,7 @@ export default function Application(props) {
     );
   }) 
 
-  const setDay = day => setState({ ...state, day });
-  //const setDay = day => setState(prev => ({ ...prev, day }));
-
-  useEffect(() => {
-    Promise.all([
-      axios.get(`http://localhost:8001/api/days`),
-      axios.get(`http://localhost:8001/api/appointments`),
-      axios.get(`http://localhost:8001/api/interviewers`)
-    ])
-    .then(all => {
-      setState(prev => ({ ...prev, days: [...all[0].data], appointments: {...all[1].data}, interviewers: {...all[2].data}}));
-    })
-  }, []);
-
+  
   return (
     <main className="layout">
       <section className="sidebar">
