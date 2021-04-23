@@ -31,7 +31,6 @@ function bookInterview(id, interview) {
     days
   })); 
   return axios.put(`/api/appointments/${id}`, appointment )
-  //.then(response => setState(prev => ({...prev, appointments: response.data})))
 };
 
 function cancelInterview(id) {
@@ -57,7 +56,6 @@ function cancelInterview(id) {
 };
 
 const setDay = day => setState({ ...state, day });
-//const setDay = day => setState(prev => ({ ...prev, day }));
 
 const pullSpots = daysArray => {
   const spotsArray = daysArray.map(day => {

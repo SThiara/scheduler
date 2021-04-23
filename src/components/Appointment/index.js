@@ -70,11 +70,9 @@ export default function Appointment(props) {
     key={props.id}
     id={props.id}
     interviewers={props.interviewers} 
-    name={props.interview && props.interview.student} // should be student=
+    name={props.interview && props.interview.student}
     interviewer={props.interview && props.interview.interviewer.id}
     onCancel={() => transition(SHOW, true)}
     onSave={save}
     />}
-    </article>
-    //{props.interview ? <Show interviewer={props.interview.interviewer} student={props.interview.student}/> : <Empty />}
-}
+    </article>}
