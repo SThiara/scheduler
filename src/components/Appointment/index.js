@@ -42,7 +42,7 @@ export default function Appointment(props) {
     .catch(() => transition(ERROR_DELETE));
   }
 
-  return <article className="appointment">
+  return <article className="appointment" data-testid="appointment">
     <Header time={props.time} />
     {mode === CONFIRM && <Confirm message={"Are you sure about that?"} onConfirm={() => cancel()} onCancel={() => back()}/>}
     {mode === ERROR_SAVE && <Error onClose={() => transition(EDIT, true)} message={"Error in saving!"}/>}
