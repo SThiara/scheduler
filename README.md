@@ -2,7 +2,7 @@
 
 ## Screenshot
 
-
+!["Landing page for the application"](https://github.com/SThiara/scheduler/blob/master/docs/homepage.png?raw=true)
 
 ## Setup
 
