@@ -13,6 +13,7 @@ export default function Appointment(props) {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVE = "SAVE";
+  const DELETE = "DELETE";
   const EDIT = "EDIT";
   const ERROR_SAVE = "ERROR_SAVE";
   const ERROR_DELETE = "ERROR_DELETE";
@@ -31,12 +32,10 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
     .catch(() => transition(ERROR_SAVE));
-    /* props.bookInterview(props.id, interview);
-    setTimeout(() => {transition(SHOW)}, 300); */
   }
 
   function cancel() {
-    transition(SAVE);
+    transition(DELETE);
     props.cancelInterview(props.id)
     .then(() => transition(EMPTY))
     .catch(() => transition(ERROR_DELETE));
@@ -47,7 +46,8 @@ export default function Appointment(props) {
     {mode === CONFIRM && <Confirm message={"Are you sure about that?"} onConfirm={() => cancel()} onCancel={() => back()}/>}
     {mode === ERROR_SAVE && <Error onClose={() => transition(EDIT, true)} message={"Error in saving!"}/>}
     {mode === ERROR_DELETE && <Error onClose={() => transition(SHOW, true)} message={"Error in deleting!"}/>}
-    {mode === SAVE && <Status message={"Saving/deleting..."} />}
+    {mode === SAVE && <Status message={"Saving"} />}
+    {mode === DELETE && <Status message={"Deleting"} />}
     {mode === EMPTY && <Empty key={props.id} onAdd={() => transition(CREATE)} />}
     {mode === SHOW && (
       <Show

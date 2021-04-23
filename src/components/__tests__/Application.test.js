@@ -25,7 +25,6 @@ describe("Application", () => {
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
-    //const appointments = getAllByTestId(container, "appointment");
     const appointment = getAllByTestId(container, "appointment")[0];
     
     fireEvent.click(getByAltText(appointment, "Add"));
@@ -38,9 +37,8 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
 
-    expect(getByText(appointment, "Saving/deleting...")).toBeInTheDocument();
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
-    //await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
 
     const day = getAllByTestId(container, "day").find(day =>
@@ -65,7 +63,7 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Confirm"));
 
-    expect(getByText(appointment, "Saving/deleting...")).toBeInTheDocument();
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
 
     await waitForElement(() => getByAltText(appointment, "Add"));
 
@@ -97,7 +95,7 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
 
-    expect(getByText(appointment, "Saving/deleting...")).toBeInTheDocument();
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
 
@@ -115,7 +113,6 @@ describe("Application", () => {
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
-    //const appointments = getAllByTestId(container, "appointment");
     const appointment = getAllByTestId(container, "appointment")[0];
     
     fireEvent.click(getByAltText(appointment, "Add"));
@@ -128,9 +125,8 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Save"));
 
-    expect(getByText(appointment, "Saving/deleting...")).toBeInTheDocument();
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
-    //await waitForElement(() => queryByText(appointment, "Lydia Miller-Jones"));
     await waitForElement(() => getByText(appointment, "Error in saving!"));
 
     fireEvent.click(getByAltText(appointment, "Close"));
@@ -153,7 +149,7 @@ describe("Application", () => {
 
     fireEvent.click(getByText(appointment, "Confirm"));
 
-    expect(getByText(appointment, "Saving/deleting...")).toBeInTheDocument();
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
 
     await waitForElement(() => getByText(appointment, "Error in deleting!"));
 
